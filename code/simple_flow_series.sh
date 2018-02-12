@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# uncomment if data directory not available
+# mkdir ../data
+
 cd ../data/sherby/Sherby/subj_1/
 
 mkdir out_work
@@ -8,10 +11,10 @@ mkdir out_work
 dipy_median_otsu dwi.nii.gz --out_dir out_work/
 
 # Create stopping criteria
-dipy_reconst_dti dwi.nii.gz dwi.bval dwi.bvec out_work/brain_mask.nii.gz --out_dir out_work/
+dipy_fit_dti dwi.nii.gz dwi.bval dwi.bvec out_work/brain_mask.nii.gz --out_dir out_work/
 
 # Create peaks
-dipy_reconst_csd dwi.nii.gz dwi.bval dwi.bvec out_work/brain_mask.nii.gz --out_dir out_work/
+dipy_fit_csd dwi.nii.gz dwi.bval dwi.bvec out_work/brain_mask.nii.gz --out_dir out_work/
 
 # Create seeding mask (this creates seed_mask in new folder)
 #dipy_mask out_work/fa.nii.gz 0.4 --out_dir out_work/ --out_mask seed_mask.nii.gz
@@ -21,7 +24,7 @@ dipy_mask out_work/fa.nii.gz 0.4 --out_mask seed_mask.nii.gz
 cd out_work/
 
 # Create tracks using peaks
-dipy_det_track peaks.npz fa.nii.gz seed_mask.nii.gz --out_tractogram 'tracks_from_peaks.trk'
+dipy_track_det peaks.pam5 fa.nii.gz seed_mask.nii.gz --out_tractogram 'tracks_from_peaks.trk'
 
 # Create tracks using sh cone
-dipy_det_track peaks.npz fa.nii.gz seed_mask.nii.gz --out_tractogram 'tracks_from_sh.trk' --use_sh
+dipy_track_det peaks.pam5 fa.nii.gz seed_mask.nii.gz --out_tractogram 'tracks_from_sh.trk' --use_sh
