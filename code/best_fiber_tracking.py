@@ -76,7 +76,7 @@ def show_odfs_and_fa(fa, pam, mask, affine, sphere, ftmp='odf.mmap',
         z = int(np.round(slider.value))
         slice_actor.display(z=z)
         odf_slicer.display(z=z)
-        show_m.iren.force_render()
+        show_m.render()
     
     line_slider_z.add_callback(line_slider_z.slider_disk,
                                "LeftButtonReleaseEvent",
