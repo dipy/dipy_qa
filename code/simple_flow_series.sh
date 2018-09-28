@@ -28,3 +28,7 @@ dipy_track_det peaks.pam5 fa.nii.gz seed_mask.nii.gz --out_tractogram 'tracks_fr
 
 # Create tracks using sh cone
 dipy_track_det peaks.pam5 fa.nii.gz seed_mask.nii.gz --out_tractogram 'tracks_from_sh.trk' --use_sh
+
+# dipy_slr ~/.dipy/bundle_atlas_hcp842/Atlas_in_MNI_Space_16_bundles/whole_brain/whole_brain_MNI.trk csa_track.trk --mix_names
+# dipy_recobundles whole_brain_MNI_csa_track__moved.trk  "/home/elef/.dipy/bundle_atlas_hcp842/Atlas_in_MNI_Space_16_bundles/bundles/*.trk" --mix_names --refine --out_dir rrbs
+
